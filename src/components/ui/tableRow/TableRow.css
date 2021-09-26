@@ -1,0 +1,10 @@
+td {
+	border-bottom: 1px solid #e8e9e9;
+	border-left: 1px solid #e8e9e9;
+	border-right: 1px solid #e8e9e9;
+	color: #1e252b;
+}
+
+tr{
+	height: 50px;
+}

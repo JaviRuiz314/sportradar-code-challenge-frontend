@@ -1,3 +1,4 @@
+import './DataTable.css';
 import React from "react";
 import TableRow from "../tableRow/TableRow";
 import TableHeadItem from "../tableHead/TableHead";
