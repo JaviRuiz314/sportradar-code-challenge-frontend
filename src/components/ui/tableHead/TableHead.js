@@ -1,8 +1,9 @@
+import './TableHead.css';
 import React from "react";
 
 const TableHeadItem = ({ item }) => {
     return (
-        <td title={item}>
+        <td title={item} className='header-columns'>
             {item}
         </td>
     );

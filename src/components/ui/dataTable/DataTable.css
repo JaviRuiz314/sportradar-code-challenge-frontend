@@ -1,0 +1,10 @@
+thead {
+	border-bottom: 1px solid var(--bs-gray-200);
+	border-left: 1px solid var(--bs-gray-200);
+	border-right: 1px solid var(--bs-gray-200);
+	color: var(--bs-gray-700);
+}
+
+td {
+	min-height: 100px;
+}

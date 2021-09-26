@@ -1,3 +1,4 @@
+import './DataTable.css';
 import React from "react";
 import TableRow from "../tableRow/TableRow";
 import TableHeadItem from "../tableHead/TableHead";
@@ -14,8 +15,6 @@ const DataTable = ({ columnList, data, customClass }) => {
             </thead>
             <tbody>
                 {data.map((row, index) => {
-                    console.log('DATA on main');
-                    console.log(row);
                     return <TableRow key={index} row={row} />;
                 })}
             </tbody>

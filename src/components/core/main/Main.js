@@ -20,6 +20,51 @@ const Main = () => {
 					home: 0
 				},
 				events: 'hello'
+			}, 
+			{
+				time: {
+					time: '16:00',
+					date: '26/05/21'
+				},
+				teams: {
+					away: 'away_team2',
+					home: 'home_team2'
+				},
+				result: {
+					away: 3,
+					home: 4
+				},
+				events: 'hello2'
+			},
+			{
+				time: {
+					time: '16:00',
+					date: '26/05/21'
+				},
+				teams: {
+					away: 'away_team2',
+					home: 'home_team2'
+				},
+				result: {
+					away: 3,
+					home: 4
+				},
+				events: 'hello2'
+			},
+			{
+				time: {
+					time: '16:00',
+					date: '26/05/21'
+				},
+				teams: {
+					away: 'away_team2',
+					home: 'home_team2'
+				},
+				result: {
+					away: 3,
+					home: 4
+				},
+				events: 'hello2'
 			}],
 			'tournament_2': [{
 				time: {
@@ -90,7 +135,7 @@ const Main = () => {
 	return (
 		<div className="container-fluid main">
 			<div className='row justify-content-center'>
-				<div className='col-8 d-flex justify-content-center'>
+				<div className='col-8 mt-3 d-flex justify-content-center'>
 					<DataTable columnList={columns} data={processedRecords} />
 				</div>
 			</div>

@@ -1,3 +1,4 @@
+import './TableRow.css';
 import React from "react";
 
 const TableRow = ({row}) => {

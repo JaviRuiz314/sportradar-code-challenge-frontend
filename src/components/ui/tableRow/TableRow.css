@@ -1,0 +1,12 @@
+td {
+	border-bottom: 1px solid var(--bs-gray-200);
+	border-left: 1px solid var(--bs-gray-200);
+	border-right: 1px solid var(--bs-gray-200);
+	color: #1e252b;
+	padding: 10px;
+}
+
+tr{
+	height: 50px;
+	padding: 10px;
+}
