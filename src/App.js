@@ -5,11 +5,11 @@ import Header from './components/core/header/Header';
 function App() {
   return (
     <div className="App">
-      <div class="container-fluid">
-        <div class="row">
+      <div className="container-fluid">
+        <div className="row">
           <Header />
         </div>
-        <div class="row">
+        <div className="row">
           <Main />
         </div>
       </div>
