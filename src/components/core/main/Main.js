@@ -1,3 +1,4 @@
+import './Main.css'
 import React from "react";
 import DataTable from "../../ui/dataTable/DataTable";
 import _ from 'lodash';
@@ -75,22 +76,24 @@ const Main = () => {
 		];
 
 	function processRecords(apiData) {
-		console.log('apiData');
-		console.log(apiData['tournament_1']);
-			return apiData['tournament_1'].map(listOfMatches => {
-				return listOfMatches = {
-					time: `${_.get(listOfMatches, 'time.time')} - ${_.get(listOfMatches, 'time.date')}`,
-					homeTeam: `${_.get(listOfMatches, 'teams.home')}`,
-					result: `${_.get(listOfMatches, 'result.home')} -  ${_.get(listOfMatches, 'result.away')}`,
-					awayTeam: `${_.get(listOfMatches, 'teams.away')}`,
-					events: _.get(listOfMatches, 'events')
-				}
-			});
+		return apiData['tournament_1'].map(listOfMatches => {
+			return listOfMatches = {
+				time: `${_.get(listOfMatches, 'time.time')} - ${_.get(listOfMatches, 'time.date')}`,
+				homeTeam: `${_.get(listOfMatches, 'teams.home')}`,
+				result: `${_.get(listOfMatches, 'result.home')} -  ${_.get(listOfMatches, 'result.away')}`,
+				awayTeam: `${_.get(listOfMatches, 'teams.away')}`,
+				events: _.get(listOfMatches, 'events')
+			}
+		});
 	}
 	const processedRecords = processRecords(data);
 	return (
-		<div>
-			<DataTable columnList={columns} data={processedRecords} />
+		<div className="container-fluid main">
+			<div className='row justify-content-center'>
+				<div className='col-8 d-flex justify-content-center'>
+					<DataTable columnList={columns} data={processedRecords} />
+				</div>
+			</div>
 		</div>
 	);
 };
