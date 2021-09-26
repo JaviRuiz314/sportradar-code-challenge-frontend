@@ -1,12 +1,14 @@
 import './TableHead.css';
-import React from "react";
+import { Component } from "react";
 
-const TableHeadItem = ({ item }) => {
-    return (
-        <td title={item} className='header-columns'>
-            {item}
+class TableHeadItem extends Component {
+    render() {
+        return (
+            <td title={this.props.item} className='header-columns'>
+            {this.props.item}
         </td>
-    );
-};
+        );
+    }
+}
 
 export default TableHeadItem;
