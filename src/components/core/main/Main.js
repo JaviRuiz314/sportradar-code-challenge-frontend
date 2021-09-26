@@ -4,99 +4,26 @@ import DataTable from "../../ui/dataTable/DataTable";
 import Dropdown from "../../ui/dropdown/Dropdown"
 import _ from 'lodash';
 import { Component } from 'react';
+import axios from 'axios';
+import { MIDDLEWARE_LINK } from "../../../shared/utils";
 
 
 const
 	data = {
-		'tournament_1': [{
+		'tournament': [{
 			time: {
-				time: '15:00',
-				date: '24/05/21'
+				time: undefined,
+				date: undefined
 			},
 			teams: {
-				away: 'away_team',
-				home: 'home_team'
+				away: undefined,
+				home: undefined
 			},
 			result: {
-				away: 3,
-				home: 0
+				away: undefined,
+				home: undefined
 			},
-			events: 'hello'
-		},
-		{
-			time: {
-				time: '16:00',
-				date: '26/05/21'
-			},
-			teams: {
-				away: 'away_team2',
-				home: 'home_team2'
-			},
-			result: {
-				away: 3,
-				home: 4
-			},
-			events: 'hello2'
-		},
-		{
-			time: {
-				time: '16:00',
-				date: '26/05/21'
-			},
-			teams: {
-				away: 'away_team2',
-				home: 'home_team2'
-			},
-			result: {
-				away: 3,
-				home: 4
-			},
-			events: 'hello2'
-		},
-		{
-			time: {
-				time: '16:00',
-				date: '26/05/21'
-			},
-			teams: {
-				away: 'away_team2',
-				home: 'home_team2'
-			},
-			result: {
-				away: 3,
-				home: 4
-			},
-			events: 'hello2'
-		}],
-		'tournament_2': [{
-			time: {
-				time: '16:00',
-				date: '26/05/21'
-			},
-			teams: {
-				away: 'away_team2',
-				home: 'home_team2'
-			},
-			result: {
-				away: 3,
-				home: 4
-			},
-			events: 'hello2'
-		}],
-		'tournament_3': [{
-			time: {
-				time: '20:00',
-				date: '30/05/21'
-			},
-			teams: {
-				away: 'away_team3',
-				home: 'home_team3'
-			},
-			result: {
-				away: 3,
-				home: 10
-			},
-			events: 'hello3'
+			events: undefined
 		}]
 	},
 	columns = [
@@ -131,10 +58,15 @@ class Main extends Component {
 		}
 	}
 
+	componentDidMount = async () => {
+		const apiData = await axios.get(MIDDLEWARE_LINK);
+		this.setState({ data: apiData.data });
+	}
+
 	processRecords() {
 		const defaultOption = this.state.data[Object.keys(this.state.data)[0]];
 		let list = [];
-		if(this.state.dropDownSelection === 'tournament'){
+		if (this.state.dropDownSelection === 'tournament') {
 			list = defaultOption
 		} else {
 			list = this.state.data[this.state.dropDownSelection];
@@ -143,7 +75,7 @@ class Main extends Component {
 			return listOfMatches = {
 				time: `${_.get(listOfMatches, 'time.time')} - ${_.get(listOfMatches, 'time.date')}`,
 				homeTeam: `${_.get(listOfMatches, 'teams.home')}`,
-				result: `${_.get(listOfMatches, 'result.home')} -  ${_.get(listOfMatches, 'result.away')}`,
+				result: `${_.get(listOfMatches, 'score.home')} -  ${_.get(listOfMatches, 'score.away')}`,
 				awayTeam: `${_.get(listOfMatches, 'teams.away')}`,
 				events: _.get(listOfMatches, 'events')
 			}
