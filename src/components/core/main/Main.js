@@ -20,7 +20,7 @@ const Main = () => {
 					home: 0
 				},
 				events: 'hello'
-			}, 
+			},
 			{
 				time: {
 					time: '16:00',
@@ -121,7 +121,7 @@ const Main = () => {
 		];
 
 	function processRecords(apiData) {
-		return apiData['tournament_1'].map(listOfMatches => {
+		return apiData.map(listOfMatches => {
 			return listOfMatches = {
 				time: `${_.get(listOfMatches, 'time.time')} - ${_.get(listOfMatches, 'time.date')}`,
 				homeTeam: `${_.get(listOfMatches, 'teams.home')}`,
@@ -131,13 +131,25 @@ const Main = () => {
 			}
 		});
 	}
-	const processedRecords = processRecords(data);
+
 	return (
 		<div className="container-fluid main">
 			<div className='row justify-content-center'>
-				<div className='col-8 mt-3 d-flex justify-content-center'>
-					<DataTable columnList={columns} data={processedRecords} />
-				</div>
+				{Object.keys(data).map(tournament => {
+					const processedRecords = processRecords(data[tournament]);
+					return (
+						<div>
+							<div className='mt-3 d-flex justify-content-center'>
+								<p>Matches of {tournament}</p>
+							</div>
+							<div className='mt-3 d-flex justify-content-center'>
+								<DataTable columnList={columns} data={processedRecords} />
+							</div>
+						</div>
+					);
+				})
+				}
+
 			</div>
 		</div>
 	);
