@@ -10,3 +10,14 @@ tr{
 	height: 50px;
 	padding: 10px;
 }
+
+.list-elements {
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+.list-cell {
+	padding: 0;
+	text-align: justify;
+}

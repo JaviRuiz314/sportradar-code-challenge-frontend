@@ -60,24 +60,27 @@ class Main extends Component {
 
 	componentDidMount = async () => {
 		const apiData = await axios.get(MIDDLEWARE_LINK);
-		this.setState({ data: apiData.data });
+		this.setState({
+			data: apiData.data,
+			dropDownSelection: Object.keys(apiData.data)[0]
+		});
 	}
 
 	processRecords() {
 		const defaultOption = this.state.data[Object.keys(this.state.data)[0]];
 		let list = [];
 		if (this.state.dropDownSelection === 'tournament') {
-			list = defaultOption
+			list = defaultOption;
 		} else {
 			list = this.state.data[this.state.dropDownSelection];
 		}
 		return list.map(listOfMatches => {
 			return listOfMatches = {
-				time: `${_.get(listOfMatches, 'time.time')} - ${_.get(listOfMatches, 'time.date')}`,
-				homeTeam: `${_.get(listOfMatches, 'teams.home')}`,
-				result: `${_.get(listOfMatches, 'score.home')} -  ${_.get(listOfMatches, 'score.away')}`,
-				awayTeam: `${_.get(listOfMatches, 'teams.away')}`,
-				events: _.get(listOfMatches, 'events')
+				time: `${_.get(listOfMatches, 'time.time','')} - ${_.get(listOfMatches, 'time.date','')}`,
+				homeTeam: `${_.get(listOfMatches, 'teams.home','')}`,
+				result: `${_.get(listOfMatches, 'score.home')} - ${_.get(listOfMatches, 'score.away')}`,
+				awayTeam: `${_.get(listOfMatches, 'teams.away', '')}`,
+				events: _.split(_.get(listOfMatches, 'events', null), ',')
 			}
 		});
 	}
