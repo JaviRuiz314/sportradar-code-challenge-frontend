@@ -6,14 +6,14 @@ WORKDIR /opt/app
 COPY package.json package-lock.json ./
 RUN npm install
 
-ARG API_URL
-ENV API_URL=http://localhost:4200
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=${REACT_APP_API_URL}
 
 ARG PORT
-ENV PORT=$PORT
+ENV PORT=${PORT}
 
 COPY . .
 RUN npm run build
 
-EXPOSE $PORT
+EXPOSE ${PORT}
 CMD [ "npm" "start" ]
