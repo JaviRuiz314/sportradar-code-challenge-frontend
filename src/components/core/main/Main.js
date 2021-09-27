@@ -76,8 +76,8 @@ class Main extends Component {
 		}
 		return list.map(listOfMatches => {
 			return listOfMatches = {
-				time: `${_.get(listOfMatches, 'time.time','')} - ${_.get(listOfMatches, 'time.date','')}`,
-				homeTeam: `${_.get(listOfMatches, 'teams.home','')}`,
+				time: `${_.get(listOfMatches, 'time.time', '')} - ${_.get(listOfMatches, 'time.date', '')}`,
+				homeTeam: `${_.get(listOfMatches, 'teams.home', '')}`,
 				result: `${_.get(listOfMatches, 'score.home')} - ${_.get(listOfMatches, 'score.away')}`,
 				awayTeam: `${_.get(listOfMatches, 'teams.away', '')}`,
 				events: _.split(_.get(listOfMatches, 'events', null), ',')
@@ -94,7 +94,10 @@ class Main extends Component {
 				<div className='row justify-content-center'>
 					<div>
 						<div className='mt-3 d-flex justify-content-center'>
-							<Dropdown title={this.state.dropDownSelection} options={Object.keys(this.state.data)} handleDropdownClick={this.handleDropdownCallback} />
+							<div>
+								<p>Select the tournament to review the results: </p>
+								<Dropdown title={this.state.dropDownSelection} options={Object.keys(this.state.data)} handleDropdownClick={this.handleDropdownCallback} />
+							</div>
 						</div>
 						<div className='mt-3 d-flex justify-content-center'>
 							<DataTable columnList={columns} data={processRecords} />
