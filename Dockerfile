@@ -1,14 +1,19 @@
 FROM node:16-alpine
 
-# Add a work directory
-WORKDIR /app
-# Cache and Install dependencies
-COPY package.json .
-COPY package-lock.json .
+RUN mkdir -p /opt/app
+WORKDIR /opt/app
+
+COPY package.json package-lock.json ./
 RUN npm install
-# Copy app files
+
+ARG API_URL
+ENV API_URL ${API_URL:-http://localhost:8000}
+
+ARG PORT
+ENV PORT=$PORT
+
 COPY . .
-# Expose port
-EXPOSE 3000
-# Start the app
-CMD [ "npm", "run", "start" ]
+RUN npm run build
+
+EXPOSE $PORT
+CMD [ "npm" "run" "start" ]
