@@ -66,6 +66,10 @@ class Main extends Component {
 		});
 	}
 
+	scapeNullValues(item, path, valueToScape) {
+		return _.get(item, path) === valueToScape ? '' : _.get(item, path);
+	}
+
 	processRecords() {
 		const defaultOption = this.state.data[Object.keys(this.state.data)[0]];
 		let list = [];
@@ -76,11 +80,11 @@ class Main extends Component {
 		}
 		return list.map(listOfMatches => {
 			return listOfMatches = {
-				time: `${_.get(listOfMatches, 'time.time', '')} - ${_.get(listOfMatches, 'time.date', '')}`,
-				homeTeam: `${_.get(listOfMatches, 'teams.home', '')}`,
-				result: `${_.get(listOfMatches, 'score.home')} - ${_.get(listOfMatches, 'score.away')}`,
-				awayTeam: `${_.get(listOfMatches, 'teams.away', '')}`,
-				events: _.split(_.get(listOfMatches, 'events', null), ',')
+				time: `${this.scapeNullValues(listOfMatches, 'time.time', null)} - ${this.scapeNullValues(listOfMatches, 'time.date', null)}`,
+				homeTeam: `${this.scapeNullValues(listOfMatches, 'teams.home', null)}`,
+				result: `${this.scapeNullValues(listOfMatches, 'score.home', null)} - ${this.scapeNullValues(listOfMatches, 'score.away', null)}`,
+				awayTeam: `${this.scapeNullValues(listOfMatches, 'teams.away', null)}`,
+				events: _.split(this.scapeNullValues(listOfMatches, 'events', null), ',')
 			}
 		});
 	}
